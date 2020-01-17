@@ -21,7 +21,7 @@ query to database using the headers as the fields.
     
     $ python import.py -h
     $ python import.py -t spreadsheet -f data/users.xlsx -s source -H hostname.com -U username -P pwd -D db_name
-    $ python import.py -t csv -f data/users.csv -H hostname.com -U username -P pwd -D db_name
+    $ python import.py -t csv -f data/users.csv -H hostname.com -U username -P pwd -D db_name -tb table_name
     
 ###### arguments
     

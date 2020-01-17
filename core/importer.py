@@ -68,7 +68,7 @@ def run_spreadsheet_import(sheet_name, dataset, db):
         print(e)
 
 
-def run_csv_import(dataset, db):
+def run_csv_import(dataset, db, table):
     # Get the cursor, which is used to traverse the database, line by line
     cursor = db.cursor()
 
@@ -83,10 +83,7 @@ def run_csv_import(dataset, db):
         args = ",".join(repr(e) for e in [{} for v in headers])
         next(csv_reader)
         for row in csv_reader:
-            query = """
-                      INSERT INTO users ({})
-                      VALUES ({})
-                    """.format(args, args)
+            query = "INSERT INTO " + table + " ({}) VALUES ({})".format(args, args)
             values=['%s' for v in range(len(headers))]
             query = query.format(*headers, *values)
 

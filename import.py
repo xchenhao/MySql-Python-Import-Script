@@ -22,6 +22,7 @@ def get_arguments(argv):
     parser.add_argument('-U', '--user', help='The username to use')
     parser.add_argument('-P', '--password', help='The password to use')
     parser.add_argument('-D', '--database', help='The database name to use')
+    parser.add_argument('-tb', '--table', help='The table name to insert')
     args = parser.parse_args()
     return args
 
@@ -37,6 +38,7 @@ def main(args):
     user = args.user
     password = args.password
     database = args.database
+    table = args.table
 
     db = connection.connect(user, password, host, database)
     if type == 'spreadsheet':
@@ -46,7 +48,7 @@ def main(args):
             print("Missing sheet name!! Importing data from first index on spreadsheet")
             importer.run_spreadsheet_import(sheet, file, db)
     elif type == 'csv':
-        importer.run_csv_import(file, db)
+        importer.run_csv_import(file, db, table)
 
 
 
